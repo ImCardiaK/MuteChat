@@ -1,0 +1,43 @@
+#"permMuteChat" is the permission that must be added to the staff member to execute the command
+#"noPermMsg" Is the message that will be sent if the player does not have the permission!
+#
+#"errorMsg" Is the message that will be sent if the command is incorrectly executed
+#
+#"activateMsg" Is the message that will be sent when the chat is reactivated!
+#"disableMsg" Is the message that will be sent when the chat is deactivated!
+#"PlayerMsg" Is the message which will be sent to the player, if he tries to write in the chat while this one is deactivated!
+
+options:
+
+permMuteChat: mutechat.op
+noPermMsg: &cYou don't have permission to do this!
+
+errorMsg: &cERROR: /mutechat <on/off>
+
+activateMsg: %player% activated the chat.
+disableMsg: %player% has disabled the chat.
+PlayerMsg: &cChat is disabled!
+
+
+
+command /mutechat [<text>]:
+	permission: {@permMuteChat}
+	permission message: {@noPermMsg}
+	aliases: mutech
+	trigger:
+		if arg 1 is set:
+			if arg 1 is "on":
+				set {chat} to true
+				broadcast "{@activateMsg}"
+			else if arg 1 is "off":
+				clear {chat}
+				broadcast "{@disableMsg}"
+			else:
+				message "{@errorMsg}" to player
+		else:
+			message "{@errorMsg}" to player
+
+on chat:
+	if {chat} is not set:
+		cancel event
+		message "{@PlayerMsg}" to player
