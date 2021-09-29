@@ -1,5 +1,14 @@
 # MuteChat
 Mutes the chat, to prevent players from writing.
+
+-----------
+ Need of:
+ - TuSKe
+ - SkRayFall
+ - SkQuery
+ - Sk-NbeeT
+ - Skellett-Legacy
+ - SkBee
 --------
 configurable options:
   
